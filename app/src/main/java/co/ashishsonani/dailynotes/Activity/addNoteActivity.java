@@ -1,4 +1,4 @@
-package co.ashishsonani.dailynotes;
+package co.ashishsonani.dailynotes.Activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,20 +13,28 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.Objects;
 
 import co.ashishsonani.dailynotes.Model.Listdata;
+import co.ashishsonani.dailynotes.R;
 
 public class addNoteActivity extends AppCompatActivity {
 
     TextInputEditText titleEditText, descriptionEditText;
     TextInputLayout tilTitle ,tilDescription;
-    String titleSend, descriptionSend ,currentDateSend ,currentDate;
+    String titleSend;
+    String descriptionSend;
+    String currentDateSend;
+    String currentDate;
+    FirebaseUser currentUser;
     private DatabaseReference mDatabase;
 
     @Override
@@ -40,12 +48,13 @@ public class addNoteActivity extends AppCompatActivity {
         tilDescription = findViewById(R.id.description);
         mDatabase = FirebaseDatabase.getInstance().getReference();
         SimpleDateFormat sdf = new SimpleDateFormat("dd,MM,yyyy 'at' h:mm a", Locale.getDefault());
-        currentDate = sdf.format(new Date());;
+        currentDate = sdf.format(new Date());
+        currentUser = FirebaseAuth.getInstance().getCurrentUser();
     }
 
     public void AddNotes(View view) {
-        titleSend = titleEditText.getText().toString();
-        descriptionSend = descriptionEditText.getText().toString();
+        titleSend = Objects.requireNonNull(titleEditText.getText()).toString();
+        descriptionSend = Objects.requireNonNull(descriptionEditText.getText()).toString();
         currentDateSend = currentDate.trim();
         if (TextUtils.isEmpty(titleSend) || TextUtils.isEmpty(descriptionSend)) {
             tilTitle.setError("Please Enter Note Title");
@@ -61,12 +70,13 @@ public class addNoteActivity extends AppCompatActivity {
 
         String id=mDatabase.push().getKey();
         Listdata listdata = new Listdata(id,titleSend, descriptionSend,currentDateSend);
-        mDatabase.child("Notes").child(id).setValue(listdata).
+        assert id != null;
+        mDatabase.child(currentUser.getUid()).child("Notes").child(id).setValue(listdata).
                 addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         Toast.makeText(getApplicationContext(), "Notes Added", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                        startActivity(new Intent(getApplicationContext(), mainActivity.class));
                         finish();
                     }
                 });

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/item_background"
+    tools:context=".Activity.signInActivity">
+
+    <TextView
+        android:id="@+id/appTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/tagLine"
+        android:layout_centerInParent="true"
+        android:fontFamily="@font/lato_bold"
+        android:text="@string/app_name"
+        android:textAllCaps="true"
+        android:textColor="@android:color/white"
+        android:textSize="40sp" />
+
+    <TextView
+        android:id="@+id/tagLine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/singInButton"
+        android:layout_centerHorizontal="true"
+        android:fontFamily="@font/lato_bold"
+        android:text="@string/appTagLine"
+        android:textAllCaps="true"
+        android:textColor="@android:color/white" />
+
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/singInButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_margin="10dp"
+        android:paddingTop="20dp" />
+
+</RelativeLayout>

@@ -45,8 +45,5 @@ public class Listdata {
         this.title = title;
         this.desc = desc;
         this.currentDate = currentDate;
-
     }
-
-
 }

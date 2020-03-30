@@ -14,23 +14,18 @@
         android:roundIcon="@drawable/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".splashScreenActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity android:name=".editNoteActivity" />
-        <activity android:name=".addNoteActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".Activity.profileActivity"/>
+        <activity android:name=".Activity.signInActivity" />
+        <activity android:name=".Activity.splashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Activity.editNoteActivity" />
+        <activity android:name=".Activity.addNoteActivity" />
+        <activity android:name=".Activity.mainActivity" />
 
         <meta-data
             android:name="preloaded_fonts"

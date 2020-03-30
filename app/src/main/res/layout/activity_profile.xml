@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activity.profileActivity"
+    android:orientation="vertical">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/userProfile"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/item_background"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp"/>
+
+    <TextView
+        android:id="@+id/textViewName"
+        android:text="@string/name"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/lato_bold"
+        android:textSize="20sp"
+        android:textColor="@color/mainFontColor"/>
+    <TextView
+        android:id="@+id/textViewEmail"
+        android:text="@string/email"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/lato_bold"
+        android:textSize="20sp"
+        android:textColor="@color/mainFontColor"/>
+
+    <Button
+        android:id="@+id/singOut"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/singout_button"
+        android:layout_margin="20dp"
+        android:textColor="@android:color/white"
+        android:background="@drawable/item_background"/>
+</LinearLayout>

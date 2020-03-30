@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Daily Notes</string>
+    <string name="appTagLine">Live In The Moment</string>
+    <string name="nothing_to_show_nplease_add_notes">Nothing to Show\nPlease Add Notes</string>
+    <string name="name">Name</string>
+    <string name="singout_button">singout</string>
+    <string name="email">Email</string>
+    <string name="note_title">Title</string>
+    <string name="note_description">Description</string>
+    <string name="note_current_date">Current Date</string>
+    <string name="title_edit_notes">Edit Notes</string>
+    <string name="button_delete_note">Delete Note</string>
 </resources>

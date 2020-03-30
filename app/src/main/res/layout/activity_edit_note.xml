@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true">
@@ -17,7 +16,7 @@
             android:layout_marginTop="10dp"
             android:fontFamily="@font/lato_bold"
             android:gravity="center_horizontal"
-            android:text="Edit Notes"
+            android:text="@string/title_edit_notes"
             android:textColor="@color/mainFontColor"
             android:textSize="30sp" />
 
@@ -31,7 +30,7 @@
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Note Title">
+                android:hint="@string/note_title">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/noteTitleEditText"
@@ -46,7 +45,7 @@
 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Note Description"
+                android:hint="@string/note_description"
                 android:nestedScrollingEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -66,8 +65,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/item_background"
                 android:fontFamily="@font/lato_bold"
-                android:onClick="editNotes"
-                android:text="Edit Note"
+                android:text="@string/title_edit_notes"
                 android:textColor="@android:color/white" />
 
             <Button
@@ -77,8 +75,7 @@
                 android:background="@drawable/item_background"
                 android:fontFamily="@font/lato_bold"
                 android:layout_marginTop="10dp"
-                android:onClick="deleteNotes"
-                android:text="Delete Note"
+                android:text="@string/button_delete_note"
                 android:textColor="@android:color/white" />
         </LinearLayout>
     </RelativeLayout>

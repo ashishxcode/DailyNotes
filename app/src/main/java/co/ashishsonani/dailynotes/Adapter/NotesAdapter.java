@@ -11,15 +11,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
-import com.google.android.material.snackbar.Snackbar;
-
 import java.util.List;
 
 import co.ashishsonani.dailynotes.Model.Listdata;
 import co.ashishsonani.dailynotes.R;
-import co.ashishsonani.dailynotes.editNoteActivity;
-
-import static co.ashishsonani.dailynotes.R.id.currentDate;
+import co.ashishsonani.dailynotes.Activity.editNoteActivity;
 
 public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MyHolder> {
 
@@ -38,8 +34,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MyHolder> {
     public MyHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item, viewGroup, false);
 
-        MyHolder myHolder = new MyHolder(view);
-        return myHolder;
+        return new MyHolder(view);
     }
 
     @Override
@@ -60,7 +55,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MyHolder> {
         TextView description;
         TextView currentDate;
 
-        public MyHolder(@NonNull View itemView) {
+        MyHolder(@NonNull View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.title);
             description = itemView.findViewById(R.id.description);
