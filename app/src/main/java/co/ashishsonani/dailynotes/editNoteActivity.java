@@ -16,12 +16,16 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 import co.ashishsonani.dailynotes.Model.Listdata;
 
 public class editNoteActivity extends AppCompatActivity {
 
     TextInputEditText editNoteTitle, editNoteDescription;
-    String titleSend, descriptionSend;
+    String titleSend, descriptionSend ,currentDateSend ,currentDate;
     private DatabaseReference mDatabase;
     private Listdata listdata;
     Button editButton, deleteButton;
@@ -60,12 +64,17 @@ public class editNoteActivity extends AppCompatActivity {
                 deleteNote(id);
             }
         });
+
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd,MM,yyyy 'at' h:mm a", Locale.getDefault());
+        currentDate = sdf.format(new Date());
     }
 
     private void editNotes(String id) {
         titleSend = editButton.getText().toString();
         descriptionSend = editNoteDescription.getText().toString();
-        Listdata listdata = new Listdata(id, titleSend, descriptionSend);
+        currentDateSend = currentDate.trim();
+        Listdata listdata = new Listdata(id, titleSend, descriptionSend,currentDateSend);
         mDatabase.child("Notes").child(id).setValue(listdata).
                 addOnCompleteListener(
                         new OnCompleteListener<Void>() {
@@ -87,7 +96,6 @@ public class editNoteActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Notes Deleted", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         finish();
-
                     }
                 });
     }

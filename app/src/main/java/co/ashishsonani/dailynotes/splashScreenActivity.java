@@ -7,8 +7,6 @@ import android.view.Window;
 import android.view.WindowManager;
 
 public class splashScreenActivity extends AppCompatActivity {
-    /** Duration of wait **/
-    private final int SPLASH_DISPLAY_LENGTH = 1000;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -17,6 +15,8 @@ public class splashScreenActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_splash_screen);
 
+        /** Duration of wait **/
+        int SPLASH_DISPLAY_LENGTH = 1000;
         new Handler().postDelayed(new Runnable(){
             @Override
             public void run() {

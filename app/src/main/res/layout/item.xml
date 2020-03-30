@@ -37,5 +37,16 @@
             android:padding="10dp"
             android:maxLines="1"
             android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/currentDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/lato_bold"
+            android:text="Current Date"
+            android:textColor="@android:color/white"
+            android:textSize="12sp"
+            android:padding="10dp"
+            android:maxLines="1"
+            android:textStyle="bold"/>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

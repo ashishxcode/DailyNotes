@@ -42,13 +42,12 @@ public class MainActivity extends AppCompatActivity {
     FloatingActionButton fabButton;
     TextView nothingToShow;
     boolean doubleBackToExitPressedOnce = false;
-
-    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // initialize views
         fabButton = findViewById(R.id.fabButton);
         recyclerView = findViewById(R.id.recycleview);
         nothingToShow = findViewById(R.id.nothingToShow);
@@ -80,6 +79,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+        // add new notes
         fabButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-
+        // Check internet connection
         ConnectivityManager ConnectionManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = ConnectionManager.getActiveNetworkInfo();
         if (networkInfo != null && networkInfo.isConnected() == true) {
@@ -99,6 +100,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
+    // perform back pressed event
     @Override
     public void onBackPressed() {
         if (doubleBackToExitPressedOnce) {
