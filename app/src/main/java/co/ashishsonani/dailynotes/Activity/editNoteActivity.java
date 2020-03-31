@@ -2,16 +2,20 @@ package co.ashishsonani.dailynotes.Activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -32,8 +36,10 @@ public class editNoteActivity extends AppCompatActivity {
     String titleSend, descriptionSend, currentDateSend, currentDate;
     private DatabaseReference mDatabase;
     private Listdata listdata;
-    Button editButton, deleteButton;
     FirebaseUser currentUser;
+    ImageView backIcon;
+    Toolbar cardToolbar;
+    FloatingActionButton editButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,9 +48,11 @@ public class editNoteActivity extends AppCompatActivity {
 
         //initialize views
         editButton = findViewById(R.id.editButton);
-        deleteButton = findViewById(R.id.deleteButton);
         editNoteTitle = findViewById(R.id.noteTitleEditText);
         editNoteDescription = findViewById(R.id.noteDescriptionEditText);
+
+        backIcon = findViewById(R.id.backIcon);
+        cardToolbar = findViewById(R.id.cardToolbar);
         // current user
         currentUser = FirebaseAuth.getInstance().getCurrentUser();
         //get data from intent
@@ -53,10 +61,14 @@ public class editNoteActivity extends AppCompatActivity {
         String getdesc = i.getStringExtra("desc");
         final String id = i.getStringExtra("id");
 
+        editNoteTitle.requestFocus();
+        editNoteDescription.requestFocus();
+        //getting data from main activity
         mDatabase = FirebaseDatabase.getInstance().getReference();
         editNoteTitle.setText(gettitle);
         editNoteDescription.setText(getdesc);
 
+        //edit data
         editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,20 +76,33 @@ public class editNoteActivity extends AppCompatActivity {
             }
         });
 
-        deleteButton.setOnClickListener(new View.OnClickListener() {
+        //back to main activity
+        backIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                deleteNote(id);
+                startActivity(new Intent(getApplicationContext(), mainActivity.class));
+                finish();
             }
         });
 
-
+        //getting current date
         SimpleDateFormat sdf = new SimpleDateFormat("dd,MM,yyyy 'at' h:mm a", Locale.getDefault());
         currentDate = sdf.format(new Date());
+
+        //delete data
+        cardToolbar.inflateMenu(R.menu.edit_activtiy_menu);
+        cardToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                deleteNote(id);
+                return false;
+            }
+        });
+
     }
 
     private void editNotes(String id) {
-        titleSend = editButton.getText().toString();
+        titleSend = Objects.requireNonNull(editNoteTitle.getText()).toString();
         descriptionSend = Objects.requireNonNull(editNoteDescription.getText()).toString();
         currentDateSend = currentDate.trim();
         Listdata listdata = new Listdata(id, titleSend, descriptionSend, currentDateSend);

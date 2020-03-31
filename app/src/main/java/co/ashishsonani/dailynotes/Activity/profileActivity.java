@@ -19,8 +19,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class profileActivity extends AppCompatActivity {
 
     CircleImageView imageView;
-    TextView textName, textEmail;
-    Button singout;
+    TextView textName, textEmail, singout;
     FirebaseAuth mAuth;
 
     @Override

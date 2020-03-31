@@ -25,17 +25,19 @@ import java.util.Objects;
 
 import co.ashishsonani.dailynotes.Model.Listdata;
 import co.ashishsonani.dailynotes.R;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class addNoteActivity extends AppCompatActivity {
 
     TextInputEditText titleEditText, descriptionEditText;
-    TextInputLayout tilTitle ,tilDescription;
+    TextInputLayout tilTitle, tilDescription;
     String titleSend;
     String descriptionSend;
     String currentDateSend;
     String currentDate;
     FirebaseUser currentUser;
     private DatabaseReference mDatabase;
+    CircleImageView backIcon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,9 +45,19 @@ public class addNoteActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_note);
         //initialize view
         titleEditText = findViewById(R.id.noteTitleEditText);
+        titleEditText.requestFocus();
         descriptionEditText = findViewById(R.id.noteDescriptionEditText);
         tilTitle = findViewById(R.id.title);
         tilDescription = findViewById(R.id.description);
+        backIcon = findViewById(R.id.backIcon);
+
+        backIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), mainActivity.class));
+                finish();
+            }
+        });
         mDatabase = FirebaseDatabase.getInstance().getReference();
         SimpleDateFormat sdf = new SimpleDateFormat("dd,MM,yyyy 'at' h:mm a", Locale.getDefault());
         currentDate = sdf.format(new Date());
@@ -61,15 +73,14 @@ public class addNoteActivity extends AppCompatActivity {
             tilDescription.setError("Please Enter Note Description");
             return;
         }
-        AddNotes(titleSend, descriptionSend,currentDateSend);
+        AddNotes(titleSend, descriptionSend, currentDateSend);
 
     }
 
-    private void AddNotes(String titleSend, String descriptionSend,String currentDateSend)
-    {
+    private void AddNotes(String titleSend, String descriptionSend, String currentDateSend) {
 
-        String id=mDatabase.push().getKey();
-        Listdata listdata = new Listdata(id,titleSend, descriptionSend,currentDateSend);
+        String id = mDatabase.push().getKey();
+        Listdata listdata = new Listdata(id, titleSend, descriptionSend, currentDateSend);
         assert id != null;
         mDatabase.child(currentUser.getUid()).child("Notes").child(id).setValue(listdata).
                 addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -83,4 +94,10 @@ public class addNoteActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(getApplicationContext(), mainActivity.class));
+        finish();
+        super.onBackPressed();
+    }
 }
