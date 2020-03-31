@@ -7,6 +7,8 @@ Hi! I made  **Daily Notes App**. to learn more about **Firebase Realtime** datab
  - Edit Notes
  - Delete Notes
  - Share Notes
+ - Multi User Support
+ - Note Add with Date and time
  - Google Material Design
 
 ## Create Notes
@@ -22,8 +24,7 @@ Long click on a note can provide you **Share** your notes with other application
 
 ## Future Scope
 
- - Multi User Support
- - Note Add with Date and time
  - Daily Notification
  - Complete Task Alert
- **Make pull request to work with me**
+ - etc.
+## Make pull request to work with me
